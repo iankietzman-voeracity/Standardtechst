@@ -4,9 +4,11 @@
 ## Description
 An opinionated, full stack scaffold for rapid prototyping and iteration of alpha and beta products
 
+**Standardtechst** is from the Danish *standardtekst*, meaning boilerplate, with some simple wordplay thrown in
+
 Currently in initial development / pre-release phase
 
-## Todo
+## Todo for initial release candidate 0.0.1:
 
 ### Back end
 - [ ] Pocketbase as project requirement/framework
