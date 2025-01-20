@@ -1,4 +1,5 @@
 # Standardtechst
+![logo](https://github.com/user-attachments/assets/8c46a448-c22c-4fb0-a17e-52bbd1d46ef5)
 
 ## Description
 An opinionated, full stack scaffold for rapid prototyping and iteration of alpha and beta products
