@@ -6,6 +6,8 @@ An opinionated, full stack scaffold for rapid prototyping and iteration of alpha
 
 **Standardtechst** is from the Danish *standardtekst*, meaning boilerplate, with some simple wordplay thrown in
 
+The logo is meant to evoke old bronze typesetting blocks, where the bare bronze shows through on the elevated letter ridges and everything else covered in ink
+
 Currently in initial development / pre-release phase
 
 ## Todo for initial release candidate 0.0.1:
@@ -52,3 +54,4 @@ Currently in initial development / pre-release phase
 - [x] Logos
 - [ ] compose.yaml
 - [ ] Github workflows for E2E testing/build/deploy
+- [ ] README 0.0.1
