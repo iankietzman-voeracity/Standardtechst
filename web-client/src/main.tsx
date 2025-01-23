@@ -1,16 +1,41 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-// import "./index.css";
+import ReactDOM from 'react-dom/client'
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 import "@radix-ui/themes/styles.css";
-import { Theme, ThemePanel} from "@radix-ui/themes";
-import App from "./App.tsx";
+import { Theme } from "@radix-ui/themes";
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <Theme appearance="dark" accentColor="tomato">
-      <App />
-      <ThemePanel />
-    </Theme>
+import { RouterProvider, createRouter } from '@tanstack/react-router'
 
-  </StrictMode>,
-);
+// Import the generated route tree
+import { routeTree } from './routeTree.gen'
+
+// Create a new router instance
+const router = createRouter({ routeTree })
+
+// Register the router instance for type safety
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
+}
+
+const queryClient = new QueryClient()
+
+// Render the app
+const rootElement = document.getElementById('root')!
+if (!rootElement.innerHTML) {
+  const root = ReactDOM.createRoot(rootElement)
+  root.render(
+    <StrictMode>
+      <Theme appearance="dark" accentColor="tomato">
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+        </QueryClientProvider>
+      </Theme>
+      
+    </StrictMode>,
+  )
+}

@@ -13,9 +13,9 @@ Currently in initial development / pre-release phase
 ## Todo for initial release candidate 0.0.1:
 
 ### Back end
-- [ ] Pocketbase as project requirement/framework
-- [ ] Air for hot reloading
-- [ ] Plausible custom event hook/route
+- [x] Pocketbase as project requirement/framework
+- [x] Air for hot reloading
+- [x] Plausible custom event hook/route
 - [ ] Generic middleware setup
 - [ ] Auth middleware
 - [ ] Memory store for auth (eliminate most frequent DB hits)
@@ -28,12 +28,12 @@ Currently in initial development / pre-release phase
 - [ ] Github workflows for linting/unit tests/integration tests
 
 ### Front end
-- [ ] React with Vite and TS
-- [ ] ESLint
-- [ ] Prettier
-- [ ] Tailwind + RadixUI
-- [ ] RadixUI Theme 
-- [ ] TanStack Router
+- [x] React with Vite and TS
+- [x] ESLint
+- [x] Prettier
+- [x] RadixUI
+- [x] RadixUI Theme 
+- [x] TanStack Router
 - [ ] TanStack Query
 - [ ] Auth provider
 - [ ] API provider
