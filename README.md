@@ -40,7 +40,7 @@ Currently in initial development / pre-release phase
 - [x] Route protection
 - [ ] API provider
 - [x] User authentication feature
-- [o] User registration feature
+- [x] User registration feature
 - [ ] React Testing Library w/ Vitest
 - [ ] i18n
 - [x] React Hook Form 

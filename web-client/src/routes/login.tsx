@@ -35,7 +35,7 @@ function Login() {
   const navigate = useNavigate({
     from: "/login",
   });
-  if (pb.authStore.isValid) {
+  if (isAuthenticated) {
     navigate({
       to: "/protected",
     });
@@ -73,22 +73,10 @@ function Login() {
   if (mutation.isError)
     return "An error has occurred: " + mutation.error.message;
 
-  // function login(e: BaseSyntheticEvent) {
-  //   console.log(e);
-
-  //   e.preventDefault();
-  //   const data = Object.fromEntries(new FormData(e.currentTarget));
-  //   console.log('submitting', data, data.name, typeof(data.email));
-  //   mutation.mutate( {
-  //     name: data.email
-  //   } )
-
-  // }
-
   const login: SubmitHandler<LoginData> = async (data) => {
     console.log(data);
     try {
-      console.log("submitting", data), pb;
+      console.log("submitting", data);
       const authData = mutation.mutate({
         email: data.email,
         password: data.password,
@@ -107,27 +95,14 @@ function Login() {
             <Form.Label>Email:</Form.Label>
             <Form.Control {...register("email")} type="email" required />
             {errors.email && (
-              // <Form.Message className="FormMessage">
               <div>{errors.email.message}</div>
-              // </Form.Message>
             )}
-            {/* <Form.Message className="FormMessage" match="valueMissing">
-              Please enter your email
-            </Form.Message>
-            <Form.Message className="FormMessage" match="typeMismatch">
-              Please provide a valid email
-            </Form.Message> */}
           </Form.Field>
           <Form.Field name="password">
             <Form.Label>Password:</Form.Label>
             <Form.Control {...register("password")} type="password" required />
-            {/* <Form.Message className="FormMessage" match="valueMissing">
-              Please enter your password
-            </Form.Message> */}
             {errors.password && (
-              // <Form.Message className="FormMessage">
               <div>{errors.password.message}</div>
-              // </Form.Message>
             )}
           </Form.Field>
 
