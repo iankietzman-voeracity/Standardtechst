@@ -15,12 +15,13 @@ Currently in initial development / pre-release phase
 ### Back end
 - [x] Pocketbase as project requirement/framework
 - [x] Air for hot reloading
-- [x] Plausible custom event hook/route
+- [ ] Plausible custom event hook/route
 - [ ] Generic middleware setup
 - [ ] Auth middleware
 - [ ] Memory store for auth (eliminate most frequent DB hits)
-- [ ] Logging
+- [x] Logging
 - [ ] Migrations (for user Settings feature)
+- [ ] Testing setup
 - [ ] Subscriptions provider
 - [ ] Email+templates
 - [ ] Sentry integration
@@ -34,17 +35,20 @@ Currently in initial development / pre-release phase
 - [x] RadixUI
 - [x] RadixUI Theme 
 - [x] TanStack Router
-- [ ] TanStack Query
-- [ ] Auth provider
+- [x] TanStack Query/Mutation
+- [X] Auth provider
+- [x] Route protection
 - [ ] API provider
-- [ ] Authentication flow feature
+- [x] User authentication feature
+- [o] User registration feature
 - [ ] React Testing Library w/ Vitest
 - [ ] i18n
-- [ ] React Hook Form 
-- [ ] Zod
+- [x] React Hook Form 
+- [x] Zod
 - [ ] Subscriptions/notifications provider
 - [ ] Toast hook
 - [ ] User Settings feature
+- [ ] Some sensible styling
 - [ ] Sentry integration
 - [ ] Dockerfile
 - [ ] Github workflows for linting/unit tests/integration tests
@@ -52,6 +56,8 @@ Currently in initial development / pre-release phase
 ### Root
 - [x] OSS Docs
 - [x] Logos
+- [o] Cleanup
 - [ ] compose.yaml
 - [ ] Github workflows for E2E testing/build/deploy
 - [ ] README 0.0.1
+- [ ] Roadmap 0.0.2
