@@ -59,5 +59,6 @@ Currently in initial development / pre-release phase
 - [o] Cleanup
 - [ ] compose.yaml
 - [ ] Github workflows for E2E testing/build/deploy
-- [ ] README 0.0.1
-- [ ] Roadmap 0.0.2
+- [o] README 0.0.1
+- [o] Roadmap 0.0.2
+- [o] Release
