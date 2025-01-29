@@ -12,7 +12,7 @@ As this is meant for rapid iteration of alpha/beta products, it is not necessari
 
 **Standardtechst** is from the Danish *standardtekst*, meaning boilerplate, with some simple wordplay thrown in. One could alternatively describe it as a portmanteau + an abbreviation. (Standard Tech Stack >> StandardTechStack >> StandardTechSt >> Standardtechst)
 
-The logo is meant to evoke old bronze typesetting blocks, where the bare bronze shows through on the elevated letter ridges and everything else is covered in ink.
+The logo is meant to evoke old typesetting blocks, where the bare bronze shows through on the elevated letter ridges and everything else is covered in ink.
 
 Currently in initial development / pre-release phase
 
@@ -64,7 +64,7 @@ For now check package.json for details on running web client scripts for linting
 - [x] Cleanup
 - [x] Roadmap 0.0.2
 - [x] README 0.0.1
-- [o] Release
+- [x] Release
 
 
 ## Todo for release candidate 0.0.2:
