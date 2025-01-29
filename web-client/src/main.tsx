@@ -1,10 +1,9 @@
 import { AuthProvider, useAuth } from "./lib/AuthContext";
+import { Theme } from "@radix-ui/themes";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import "@radix-ui/themes/styles.css";
-import { Theme } from "@radix-ui/themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 
 // Import the generated route tree
@@ -27,27 +26,23 @@ declare module "@tanstack/react-router" {
 }
 
 function AuthRouterContextBridge() {
-  const {
-    isAuthenticated,
-  } = useAuth();
+  const { isAuthenticated } = useAuth();
 
   return (
     <Theme appearance="dark" accentColor="tomato">
-        <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} context={{ isAuthenticated }} />
-        </QueryClientProvider>
-      </Theme>
-  )
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} context={{ isAuthenticated }} />
+      </QueryClientProvider>
+    </Theme>
+  );
 }
-2
-function App() {
-  
 
+function App() {
   return (
     <AuthProvider>
       <AuthRouterContextBridge />
     </AuthProvider>
-  )
+  );
 }
 
 const queryClient = new QueryClient();

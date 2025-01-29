@@ -1,12 +1,12 @@
-// import { useState } from "react";
-import { Box, Button } from "@radix-ui/themes";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Box } from "@radix-ui/themes";
 import * as Form from "@radix-ui/react-form";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useAuth } from "../lib/AuthContext";
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+
+import { useAuth } from "../lib/AuthContext";
 import pb from "../lib/pb";
 
 const schema = z.object({
@@ -22,10 +22,7 @@ export const Route = createFileRoute("/register")({
 });
 
 function Register() {
-  const {
-    isAuthenticated,
-    login: login2
-  } = useAuth();
+  const { isAuthenticated, login } = useAuth();
 
   const navigate = useNavigate({
     from: "/register",
@@ -46,72 +43,63 @@ function Register() {
 
   const mutation = useMutation({
     mutationFn: async (data: RegisterData) => {
-      console.log("data", data);
-      await pb.collection('users').create(data)
-      await pb.collection('users')
+      await pb.collection("users").create(data);
       const authData = await pb
         .collection("users")
         .authWithPassword(data.email, data.password);
-      console.log(authData);
-      login2()
+      login();
       return authData;
     },
     onSuccess: (data) => {
-      console.log("success", data);
-      // login2();
       navigate({
         to: "/protected",
       });
     },
   });
-    
-  const login: SubmitHandler<RegisterData> = async (data) => {
+
+  const loginHandler: SubmitHandler<RegisterData> = async (data) => {
+    // TODO: Remove once full error handling suite is in place
     console.log(data);
     try {
-      console.log("submitting", data);
       const authData = mutation.mutate({
         email: data.email,
         password: data.password,
-        passwordConfirm: data.passwordConfirm
+        passwordConfirm: data.passwordConfirm,
       });
-      console.log(authData);
+      return authData;
     } catch (error) {
       console.log("oopsie", error);
     }
   };
 
   return (
-      <>
-        <Box maxWidth="360px" p="2">
-          <Form.Root onSubmit={handleSubmit(login)}>
-            <Form.Field name="email">
-              <Form.Label>Email:</Form.Label>
-              <Form.Control {...register("email")} type="email" required />
-              {errors.email && (
-                <div>{errors.email.message}</div>
-              )}
-            </Form.Field>
-            <Form.Field name="password">
-              <Form.Label>Password:</Form.Label>
-              <Form.Control {...register("password")} type="password" required />
-              {errors.password && (
-                <div>{errors.password.message}</div>
-              )}
-            </Form.Field>
+    <>
+      <Box maxWidth="360px" p="2">
+        <Form.Root onSubmit={handleSubmit(loginHandler)}>
+          <Form.Field name="email">
+            <Form.Label>Email:</Form.Label>
+            <Form.Control {...register("email")} type="email" required />
+            {errors.email && <div>{errors.email.message}</div>}
+          </Form.Field>
+          <Form.Field name="password">
+            <Form.Label>Password:</Form.Label>
+            <Form.Control {...register("password")} type="password" required />
+            {errors.password && <div>{errors.password.message}</div>}
+          </Form.Field>
 
-            <Form.Field name="password-confirm">
-              <Form.Label>Password:</Form.Label>
-              <Form.Control {...register("passwordConfirm")} type="password" required />
-              {errors.password && (
-                <div>{errors.password.message}</div>
-              )}
-            </Form.Field>
-  
-            <Form.Submit>{isSubmitting ? "Registering" : "Register"}</Form.Submit>
-          </Form.Root>
-        </Box>
-      </>
-    );
+          <Form.Field name="password-confirm">
+            <Form.Label>Password:</Form.Label>
+            <Form.Control
+              {...register("passwordConfirm")}
+              type="password"
+              required
+            />
+            {errors.password && <div>{errors.password.message}</div>}
+          </Form.Field>
+
+          <Form.Submit>{isSubmitting ? "Registering" : "Register"}</Form.Submit>
+        </Form.Root>
+      </Box>
+    </>
+  );
 }
-
-// export default Register;

@@ -17,15 +17,14 @@ func main() {
         // serves static files from the provided public dir (if exists)
         se.Router.GET("/{path...}", apis.Static(os.DirFS("./pb_public"), false))
 
-		se.Router.GET("/hello/{name}", func(e *core.RequestEvent) error {
+        // PING routes, currently doubling as simple test routes
+		se.Router.GET("/ping/{name}", func(e *core.RequestEvent) error {
 			name := e.Request.PathValue("name")
-	
 			return e.JSON(http.StatusOK, map[string]any{"name": name})
 		})
 
-		se.Router.POST("/hello/{name}", func(e *core.RequestEvent) error {
+		se.Router.POST("/ping/{name}", func(e *core.RequestEvent) error {
 			name := e.Request.PathValue("name")
-	
 			return e.JSON(http.StatusOK, map[string]any{"name": name})
 		})
 

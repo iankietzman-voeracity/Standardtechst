@@ -1,9 +1,7 @@
-import pb from "../lib/pb";
 import { RecordModel } from "pocketbase";
 import { createContext, useContext, useEffect, useState } from "react";
-// import { getAuth, User } from 'firebase/auth'
 
-console.log("Auth token", pb.authStore.token);
+import pb from "../lib/pb";
 
 type AuthProviderProps = {
   children: React.ReactNode;
@@ -34,8 +32,6 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setIsAuthenticated(true);
       setUserRecord(pb.authStore.record);
       setToken(pb.authStore.token);
-      console.log("store", pb.authStore.record, pb.authStore.isValid);
-      console.log(userRecord, token);
     }
   }, []);
 

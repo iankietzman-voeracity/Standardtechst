@@ -1,19 +1,18 @@
-import { useAuth } from "../lib/AuthContext";
-import pb from "../lib/pb";
-import { Box } from "@radix-ui/themes";
+import { zodResolver } from "@hookform/resolvers/zod";
 import * as Form from "@radix-ui/react-form";
+import { Box } from "@radix-ui/themes";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+
+import { useAuth } from "../lib/AuthContext";
+import pb from "../lib/pb";
 
 const schema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
 });
-
-console.log("token", pb.authStore.token);
 
 type LoginData = z.infer<typeof schema>;
 
@@ -28,8 +27,7 @@ function Login() {
     isLoading,
     userRecord,
     token,
-    login: login2,
-    logout: logout2,
+    login,
   } = useAuth();
 
   const navigate = useNavigate({
@@ -51,17 +49,13 @@ function Login() {
 
   const mutation = useMutation({
     mutationFn: async (data: LoginData) => {
-      console.log("data", data);
-
       const authData = await pb
         .collection("users")
         .authWithPassword(data.email, data.password);
-      console.log(authData);
       return authData;
     },
-    onSuccess: (data) => {
-      console.log("success", data);
-      login2();
+    onSuccess: () => {
+      login();
       navigate({
         to: "/protected",
       });
@@ -73,15 +67,14 @@ function Login() {
   if (mutation.isError)
     return "An error has occurred: " + mutation.error.message;
 
-  const login: SubmitHandler<LoginData> = async (data) => {
+  const loginHandler: SubmitHandler<LoginData> = async (data) => {
+    // TODO: Remove once full error handling suite is in place
     console.log(data);
     try {
-      console.log("submitting", data);
       const authData = mutation.mutate({
         email: data.email,
         password: data.password,
       });
-      console.log(authData);
     } catch (error) {
       console.log("oopsie", error);
     }
@@ -90,20 +83,16 @@ function Login() {
   return (
     <>
       <Box maxWidth="360px" p="2">
-        <Form.Root onSubmit={handleSubmit(login)}>
+        <Form.Root onSubmit={handleSubmit(loginHandler)}>
           <Form.Field name="email">
             <Form.Label>Email:</Form.Label>
             <Form.Control {...register("email")} type="email" required />
-            {errors.email && (
-              <div>{errors.email.message}</div>
-            )}
+            {errors.email && <div>{errors.email.message}</div>}
           </Form.Field>
           <Form.Field name="password">
             <Form.Label>Password:</Form.Label>
             <Form.Control {...register("password")} type="password" required />
-            {errors.password && (
-              <div>{errors.password.message}</div>
-            )}
+            {errors.password && <div>{errors.password.message}</div>}
           </Form.Field>
 
           <Form.Submit>{isSubmitting ? "Signing in" : "Sign in"}</Form.Submit>
@@ -112,5 +101,3 @@ function Login() {
     </>
   );
 }
-
-// export default Login;

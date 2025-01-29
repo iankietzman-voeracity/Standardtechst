@@ -1,7 +1,5 @@
-import { useAuth } from "../lib/AuthContext";
-import pb from "../lib/pb";
 import { Button } from "@radix-ui/themes";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   createRootRouteWithContext,
   Link,
@@ -9,13 +7,15 @@ import {
   useNavigate,
 } from "@tanstack/react-router";
 
+import { useAuth } from "../lib/AuthContext";
+import pb from "../lib/pb";
+
 interface RouterAuthContext {
-  isAuthenticated: boolean
+  isAuthenticated: boolean;
 }
 
 function App() {
   const navigate = useNavigate();
-  // const [authenticated, setAuthenticated] = useState(false)
   const {
     isAuthenticated,
     setIsAuthenticated,
@@ -23,20 +23,27 @@ function App() {
     userRecord,
     token,
     login,
-    logout: logout2,
+    logout,
   } = useAuth();
 
   useEffect(() => {
-    console.log("changed", isAuthenticated);
     if (pb.authStore.isValid) {
-      // setAuthenticated(true)
       setIsAuthenticated(true);
     }
-    console.log(isAuthenticated, isLoading, userRecord, token, login, logout2);
+    // TODO: Remove this line once auth flow is confidently finalized
+    console.log(
+      "user:",
+      isAuthenticated,
+      isLoading,
+      userRecord,
+      token,
+      login,
+      logout,
+    );
   }, [isAuthenticated]);
 
-  function logout(): void {
-    logout2();
+  function logoutHandler(): void {
+    logout();
     navigate({
       to: "/login",
     });
@@ -50,7 +57,7 @@ function App() {
             <Button>Sign In</Button>
           </Link>
         )}
-        {isAuthenticated && <Button onClick={logout}>Sign Out</Button>}
+        {isAuthenticated && <Button onClick={logoutHandler}>Sign Out</Button>}
         {!isAuthenticated && (
           <Link to="/register">
             <Button>Register</Button>

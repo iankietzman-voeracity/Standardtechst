@@ -23,7 +23,7 @@ Currently in initial development / pre-release phase
 - [ ] Migrations (for user Settings feature)
 - [ ] Testing setup
 - [ ] Subscriptions provider
-- [ ] Email+templates
+- [ ] Email+templates (See: User reset password feature)
 - [ ] Sentry integration
 - [ ] Dockerfile
 - [ ] Github workflows for linting/unit tests/integration tests
@@ -41,6 +41,7 @@ Currently in initial development / pre-release phase
 - [ ] API provider
 - [x] User authentication feature
 - [x] User registration feature
+- [ ] User reset password feature
 - [ ] React Testing Library w/ Vitest
 - [ ] i18n
 - [x] React Hook Form 
