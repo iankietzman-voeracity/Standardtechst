@@ -2,31 +2,44 @@
 ![logo](https://github.com/user-attachments/assets/8c46a448-c22c-4fb0-a17e-52bbd1d46ef5)
 
 ## Description
-An opinionated, full stack scaffold for rapid prototyping and iteration of alpha and beta products
+A somewhat opinionated, full stack scaffold for rapid prototyping and iteration of alpha and beta products
 
-**Standardtechst** is from the Danish *standardtekst*, meaning boilerplate, with some simple wordplay thrown in
+In short, a PocketBase back end extended with Go, plus a React with Typescript web application. The general idea is standardizing some common project bootstrapping tasks in a sensible, extensible, maintainable way so that developers can get right to work building and iterating features.
 
-The logo is meant to evoke old bronze typesetting blocks, where the bare bronze shows through on the elevated letter ridges and everything else covered in ink
+(If you haven't checked out [PocketBase](https://pocketbase.io/), please do so -- it's a great project)
+
+As this is meant for rapid iteration of alpha/beta products, it is not necessarily meant to have a proper update+upgrade schedule or process. Just grab the newest version and run.
+
+**Standardtechst** is from the Danish *standardtekst*, meaning boilerplate, with some simple wordplay thrown in. Although it could alternatively be described as a portmanteau + an abbreviation. I.e. Standard Tech Stack >> StandardTechStack >> Standardtechst
+
+The logo is meant to evoke old bronze typesetting blocks, where the bare bronze shows through on the elevated letter ridges and everything else is covered in ink.
 
 Currently in initial development / pre-release phase
 
-## Todo for initial release candidate 0.0.1:
+## Installation
+### Requirements:
+*Go
+*Node
+*Typescript
+*[air](https://github.com/air-verse/air)
+
+### Steps:
+*Clone the project
+*Install server dependencies with `go mod tidy`
+*Run server with `go run . serve`
+*Configure air (optional) and subsequently run the server with a simple `air`
+*Install web application dependencies with `npm i`
+*Run web application with `npm run dev`
+
+### Scripts and Tests
+For now check package.json for details on running web client scripts for linting and formatting. More scripts will follow, as will comprehensive testing set ups.
+
+## Work completed for initial release candidate 0.0.1:
 
 ### Back end
-- [x] Pocketbase as project requirement/framework
+- [x] PocketBase as application requirement and extensible framework
 - [x] Air for hot reloading
-- [ ] Plausible custom event hook/route
-- [ ] Generic middleware setup
-- [ ] Auth middleware
-- [ ] Memory store for auth (eliminate most frequent DB hits)
 - [x] Logging
-- [ ] Migrations (for user Settings feature)
-- [ ] Testing setup
-- [ ] Subscriptions provider
-- [ ] Email+templates (See: User reset password feature)
-- [ ] Sentry integration
-- [ ] Dockerfile
-- [ ] Github workflows for linting/unit tests/integration tests
 
 ### Front end
 - [x] React with Vite and TS
@@ -36,16 +49,42 @@ Currently in initial development / pre-release phase
 - [x] RadixUI Theme 
 - [x] TanStack Router
 - [x] TanStack Query/Mutation
+- [x] React Hook Form 
+- [x] Zod
 - [X] Auth provider
 - [x] Route protection
+- [x] Feature: User authentication
+- [x] Feature: User registration
+
+### Root
+- [x] OSS Docs
+- [x] Logos
+- [x] Cleanup
+- [x] Roadmap 0.0.2
+- [o] README 0.0.1
+- [o] Release
+
+
+## Todo for release candidate 0.0.2:
+
+### Back end
+- [ ] Plausible custom event hook/route
+- [ ] Generic middleware setup
+- [ ] Auth middleware
+- [ ] Memory store for auth (eliminate most frequent DB hits)
+- [ ] Migrations (for user Settings feature)
+- [ ] Testing setup
+- [ ] Subscriptions provider
+- [ ] Email+templates (See: User reset password feature)
+- [ ] Sentry integration
+- [ ] Dockerfile
+- [ ] Github workflows for linting/unit tests/integration tests
+
+### Front end
 - [ ] API provider
-- [x] User authentication feature
-- [x] User registration feature
 - [ ] User reset password feature
 - [ ] React Testing Library w/ Vitest
 - [ ] i18n
-- [x] React Hook Form 
-- [x] Zod
 - [ ] Subscriptions/notifications provider
 - [ ] Toast hook
 - [ ] User Settings feature
@@ -55,11 +94,8 @@ Currently in initial development / pre-release phase
 - [ ] Github workflows for linting/unit tests/integration tests
 
 ### Root
-- [x] OSS Docs
-- [x] Logos
-- [o] Cleanup
 - [ ] compose.yaml
 - [ ] Github workflows for E2E testing/build/deploy
-- [o] README 0.0.1
-- [o] Roadmap 0.0.2
-- [o] Release
+- [ ] Roadmap 0.0.3
+- [ ] README 0.0.2
+- [ ] Release
