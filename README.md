@@ -23,13 +23,13 @@ More documentation is in the works, but if you've got React/TS experience you sh
 * Go
 * Node
 * Typescript
-* [air](https://github.com/air-verse/air)
+* [air](https://github.com/air-verse/air) (optional, allows live reload on the dev server)
 
 ### Steps:
 * Clone the project
 * Install server dependencies with `go mod tidy`
 * Run server with `go run . serve`
-* (Optional) Configure air and subsequently run the server with a simple `air`
+* (Optional) Configure air and subsequently run the server with live reload with a simple `air`
 * Install web application dependencies with `npm i`
 * Run web application with `npm run dev`
 
