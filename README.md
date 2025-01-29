@@ -18,10 +18,10 @@ Currently in initial development / pre-release phase
 
 ## Installation
 ### Requirements:
-*Go
-*Node
-*Typescript
-*[air](https://github.com/air-verse/air)
+-Go
+-Node
+-Typescript
+-[air](https://github.com/air-verse/air)
 
 ### Steps:
 *Clone the project
