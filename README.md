@@ -16,6 +16,8 @@ The logo is meant to evoke old bronze typesetting blocks, where the bare bronze 
 
 Currently in initial development / pre-release phase
 
+More documentation is in the works, but if you've got React/TS experience you should be right at home in the web application, and the PocketBase docs should tell you everything you need to know about the server for the time being.
+
 ## Installation
 ### Requirements:
 * Go
