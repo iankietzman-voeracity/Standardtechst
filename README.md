@@ -8,7 +8,7 @@ In short, a PocketBase back end extended with Go, plus a React with Typescript w
 
 (If you haven't checked out [PocketBase](https://pocketbase.io/), please do so -- it's a great project)
 
-As this is meant for rapid iteration of alpha/beta products, it is not necessarily meant to have a proper update+upgrade schedule or process. Just grab the newest version and run.
+As this is meant for rapid iteration of alpha/beta products, it is not necessarily meant to have a proper update+upgrade schedule or process, although I am thinking about implementing such a structure/process in a later release. Just grab the newest version and run.
 
 **Standardtechst** is from the Danish *standardtekst*, meaning boilerplate, with some simple wordplay thrown in. One could alternatively describe it as a portmanteau + an abbreviation. (Standard Tech Stack >> StandardTechStack >> StandardTechSt >> Standardtechst)
 
@@ -63,7 +63,7 @@ For now check package.json for details on running web client scripts for linting
 - [x] Logos
 - [x] Cleanup
 - [x] Roadmap 0.0.2
-- [o] README 0.0.1
+- [x] README 0.0.1
 - [o] Release
 
 
