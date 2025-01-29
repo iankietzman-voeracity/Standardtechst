@@ -10,7 +10,7 @@ In short, a PocketBase back end extended with Go, plus a React with Typescript w
 
 As this is meant for rapid iteration of alpha/beta products, it is not necessarily meant to have a proper update+upgrade schedule or process. Just grab the newest version and run.
 
-**Standardtechst** is from the Danish *standardtekst*, meaning boilerplate, with some simple wordplay thrown in. Although it could alternatively be described as a portmanteau + an abbreviation. I.e. Standard Tech Stack >> StandardTechStack >> Standardtechst
+**Standardtechst** is from the Danish *standardtekst*, meaning boilerplate, with some simple wordplay thrown in. Although it could alternatively be described as a portmanteau + an abbreviation. (Standard Tech Stack >> StandardTechStack >> StandardTechSt >> Standardtechst)
 
 The logo is meant to evoke old bronze typesetting blocks, where the bare bronze shows through on the elevated letter ridges and everything else is covered in ink.
 
@@ -18,18 +18,18 @@ Currently in initial development / pre-release phase
 
 ## Installation
 ### Requirements:
--Go
--Node
--Typescript
--[air](https://github.com/air-verse/air)
+* Go
+* Node
+* Typescript
+* [air](https://github.com/air-verse/air)
 
 ### Steps:
-*Clone the project
-*Install server dependencies with `go mod tidy`
-*Run server with `go run . serve`
-*Configure air (optional) and subsequently run the server with a simple `air`
-*Install web application dependencies with `npm i`
-*Run web application with `npm run dev`
+* Clone the project
+* Install server dependencies with `go mod tidy`
+* Run server with `go run . serve`
+* Configure air (optional) and subsequently run the server with a simple `air`
+* Install web application dependencies with `npm i`
+* Run web application with `npm run dev`
 
 ### Scripts and Tests
 For now check package.json for details on running web client scripts for linting and formatting. More scripts will follow, as will comprehensive testing set ups.
