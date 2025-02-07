@@ -96,6 +96,7 @@ For now check package.json for details on running web client scripts for linting
 - [ ] Github workflows for linting/unit tests/integration tests
 
 ### Root
+- [ ] PR requirements and template
 - [ ] compose.yaml
 - [ ] Github workflows for E2E testing/build/deploy
 - [ ] Roadmap 0.0.3
