@@ -80,7 +80,7 @@ For now check package.json for details on running web client scripts for linting
 - [ ] Email+templates (See: User reset password feature)
 - [ ] Sentry integration
 - [ ] Dockerfile
-- [ ] Github workflows for linting/unit tests/integration tests
+- [ ] Github workflows for linting, unit tests, integration tests, build, deploy
 
 ### Front end
 - [ ] API provider
@@ -93,7 +93,7 @@ For now check package.json for details on running web client scripts for linting
 - [ ] Some sensible styling
 - [ ] Sentry integration
 - [ ] Dockerfile
-- [ ] Github workflows for linting/unit tests/integration tests
+- [ ] Github workflows for linting, unit tests, integration tests, build, deploy
 
 ### Root
 - [ ] PR requirements and template
