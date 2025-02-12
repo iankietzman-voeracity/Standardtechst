@@ -91,7 +91,7 @@ For now check package.json for details on running web client scripts for linting
 - [ ] Toast hook
 - [ ] User Settings feature
 - [ ] Some sensible styling
-- [ ] Sentry integration
+- [ ] Sentry integration?
 - [ ] Dockerfile
 - [ ] Github workflows for linting, unit tests, integration tests, build, deploy
 
