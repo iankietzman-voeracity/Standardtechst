@@ -83,7 +83,7 @@ For now check package.json for details on running web client scripts for linting
 - [ ] Github workflows for linting, unit tests, integration tests, build, deploy
 
 ### Front end
-- [ ] API provider?
+- [ ] API provider
 - [ ] User reset password feature
 - [ ] React Testing Library w/ Vitest
 - [ ] i18n
