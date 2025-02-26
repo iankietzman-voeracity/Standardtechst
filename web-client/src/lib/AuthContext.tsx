@@ -32,6 +32,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setIsAuthenticated(true);
       setUserRecord(pb.authStore.record);
       setToken(pb.authStore.token);
+      setIsLoading(false)
     }
   }, []);
 

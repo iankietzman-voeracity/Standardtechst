@@ -10,111 +10,129 @@
 
 // Import Routes
 
-import { Route as rootRoute } from "./routes/__root";
-import { Route as RegisterImport } from "./routes/register";
-import { Route as ProtectedImport } from "./routes/protected";
-import { Route as LoginImport } from "./routes/login";
-import { Route as IndexImport } from "./routes/index";
+import { Route as rootRoute } from './routes/__root'
+import { Route as SettingsImport } from './routes/settings'
+import { Route as RegisterImport } from './routes/register'
+import { Route as ProtectedImport } from './routes/protected'
+import { Route as LoginImport } from './routes/login'
+import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
 
-const RegisterRoute = RegisterImport.update({
-  id: "/register",
-  path: "/register",
+const SettingsRoute = SettingsImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
+
+const RegisterRoute = RegisterImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const ProtectedRoute = ProtectedImport.update({
-  id: "/protected",
-  path: "/protected",
+  id: '/protected',
+  path: '/protected',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
 
 const LoginRoute = LoginImport.update({
-  id: "/login",
-  path: "/login",
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
 
 const IndexRoute = IndexImport.update({
-  id: "/",
-  path: "/",
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
 
 // Populate the FileRoutesByPath interface
 
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    "/": {
-      id: "/";
-      path: "/";
-      fullPath: "/";
-      preLoaderRoute: typeof IndexImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/login": {
-      id: "/login";
-      path: "/login";
-      fullPath: "/login";
-      preLoaderRoute: typeof LoginImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/protected": {
-      id: "/protected";
-      path: "/protected";
-      fullPath: "/protected";
-      preLoaderRoute: typeof ProtectedImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/register": {
-      id: "/register";
-      path: "/register";
-      fullPath: "/register";
-      preLoaderRoute: typeof RegisterImport;
-      parentRoute: typeof rootRoute;
-    };
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginImport
+      parentRoute: typeof rootRoute
+    }
+    '/protected': {
+      id: '/protected'
+      path: '/protected'
+      fullPath: '/protected'
+      preLoaderRoute: typeof ProtectedImport
+      parentRoute: typeof rootRoute
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterImport
+      parentRoute: typeof rootRoute
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  "/": typeof IndexRoute;
-  "/login": typeof LoginRoute;
-  "/protected": typeof ProtectedRoute;
-  "/register": typeof RegisterRoute;
+  '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/protected': typeof ProtectedRoute
+  '/register': typeof RegisterRoute
+  '/settings': typeof SettingsRoute
 }
 
 export interface FileRoutesByTo {
-  "/": typeof IndexRoute;
-  "/login": typeof LoginRoute;
-  "/protected": typeof ProtectedRoute;
-  "/register": typeof RegisterRoute;
+  '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/protected': typeof ProtectedRoute
+  '/register': typeof RegisterRoute
+  '/settings': typeof SettingsRoute
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute;
-  "/": typeof IndexRoute;
-  "/login": typeof LoginRoute;
-  "/protected": typeof ProtectedRoute;
-  "/register": typeof RegisterRoute;
+  __root__: typeof rootRoute
+  '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/protected': typeof ProtectedRoute
+  '/register': typeof RegisterRoute
+  '/settings': typeof SettingsRoute
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: "/" | "/login" | "/protected" | "/register";
-  fileRoutesByTo: FileRoutesByTo;
-  to: "/" | "/login" | "/protected" | "/register";
-  id: "__root__" | "/" | "/login" | "/protected" | "/register";
-  fileRoutesById: FileRoutesById;
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths: '/' | '/login' | '/protected' | '/register' | '/settings'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/login' | '/protected' | '/register' | '/settings'
+  id: '__root__' | '/' | '/login' | '/protected' | '/register' | '/settings'
+  fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
-  LoginRoute: typeof LoginRoute;
-  ProtectedRoute: typeof ProtectedRoute;
-  RegisterRoute: typeof RegisterRoute;
+  IndexRoute: typeof IndexRoute
+  LoginRoute: typeof LoginRoute
+  ProtectedRoute: typeof ProtectedRoute
+  RegisterRoute: typeof RegisterRoute
+  SettingsRoute: typeof SettingsRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -122,11 +140,12 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   ProtectedRoute: ProtectedRoute,
   RegisterRoute: RegisterRoute,
-};
+  SettingsRoute: SettingsRoute,
+}
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>();
+  ._addFileTypes<FileRouteTypes>()
 
 /* ROUTE_MANIFEST_START
 {
@@ -137,7 +156,8 @@ export const routeTree = rootRoute
         "/",
         "/login",
         "/protected",
-        "/register"
+        "/register",
+        "/settings"
       ]
     },
     "/": {
@@ -151,6 +171,9 @@ export const routeTree = rootRoute
     },
     "/register": {
       "filePath": "register.tsx"
+    },
+    "/settings": {
+      "filePath": "settings.tsx"
     }
   }
 }

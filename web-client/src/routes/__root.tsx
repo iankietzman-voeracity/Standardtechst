@@ -12,6 +12,7 @@ import pb from "../lib/pb";
 
 interface RouterAuthContext {
   isAuthenticated: boolean;
+  isLoading: boolean
 }
 
 function App() {
@@ -56,6 +57,11 @@ function App() {
           <Link to="/login">
             <Button>Sign In</Button>
           </Link>
+        )}
+        {isAuthenticated && (
+          <Link to="/settings">
+            <Button>Settings</Button>
+            </Link>
         )}
         {isAuthenticated && <Button onClick={logoutHandler}>Sign Out</Button>}
         {!isAuthenticated && (
