@@ -12,7 +12,7 @@ import pb from "../lib/pb";
 
 interface RouterAuthContext {
   isAuthenticated: boolean;
-  isLoading: boolean
+  isLoading: boolean;
 }
 
 function App() {
@@ -28,9 +28,9 @@ function App() {
   } = useAuth();
 
   useEffect(() => {
-    if (pb.authStore.isValid) {
-      setIsAuthenticated(true);
-    }
+    // if (pb.authStore.isValid) {
+    //   setIsAuthenticated(true);
+    // }
     // TODO: Remove this line once auth flow is confidently finalized
     console.log(
       "user:",
@@ -61,7 +61,7 @@ function App() {
         {isAuthenticated && (
           <Link to="/settings">
             <Button>Settings</Button>
-            </Link>
+          </Link>
         )}
         {isAuthenticated && <Button onClick={logoutHandler}>Sign Out</Button>}
         {!isAuthenticated && (

@@ -15,7 +15,7 @@ const router = createRouter({
   defaultPreload: "intent",
   context: {
     isAuthenticated: false,
-    isLoading: false
+    isLoading: false,
   },
 });
 
@@ -29,13 +29,17 @@ declare module "@tanstack/react-router" {
 function AuthRouterContextBridge() {
   const { isAuthenticated, isLoading } = useAuth();
 
-  return (
-    <Theme appearance="dark" accentColor="tomato">
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} context={{ isAuthenticated, isLoading }} />
-      </QueryClientProvider>
-    </Theme>
-  );
+  if (!isLoading)
+    return (
+      <Theme appearance="dark" accentColor="tomato">
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider
+            router={router}
+            context={{ isAuthenticated, isLoading }}
+          />
+        </QueryClientProvider>
+      </Theme>
+    );
 }
 
 function App() {

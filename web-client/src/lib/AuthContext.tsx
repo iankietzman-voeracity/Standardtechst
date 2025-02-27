@@ -28,16 +28,44 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [token, setToken] = useState<string>("");
 
   useEffect(() => {
+    console.log("pb store change");
+
     if (pb.authStore.isValid) {
       setIsAuthenticated(true);
       setUserRecord(pb.authStore.record);
       setToken(pb.authStore.token);
-      setIsLoading(false)
+      setIsLoading(false);
+      console.log("setting auth");
+    } else {
+      setIsLoading(false);
+      console.log(isLoading);
+      console.log("setting no auth");
+      console.log(
+        "user:",
+        isAuthenticated,
+        isLoading,
+        userRecord,
+        token,
+        login,
+        logout,
+      );
     }
+    console.log(isLoading);
   }, []);
 
   const login = () => {
     setIsAuthenticated(true);
+    setUserRecord(pb.authStore.record);
+    setToken(pb.authStore.token);
+    console.log(
+      "user:",
+      isAuthenticated,
+      isLoading,
+      userRecord,
+      token,
+      login,
+      logout,
+    );
   };
 
   const logout = () => {
