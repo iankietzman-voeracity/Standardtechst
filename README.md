@@ -90,6 +90,7 @@ For now check package.json for details on running web client scripts for linting
 - [ ] Subscriptions/notifications provider
 - [ ] Toast hook
 - [ ] User Settings feature
+- [ ] User Account feature
 - [ ] Some sensible styling
 - [ ] Sentry integration
 - [ ] Dockerfile
