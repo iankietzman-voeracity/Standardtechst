@@ -42,47 +42,47 @@ function Settings() {
     login,
   } = useAuth();
 
-    const {
-      register,
-      handleSubmit,
-      formState: { errors, isSubmitting },
-    } = useForm<SettingsData>({
-      resolver: zodResolver(schema),
-    });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<SettingsData>({
+    resolver: zodResolver(schema),
+  });
+
+    const submitHandler: SubmitHandler<SettingsData> = async (data) => {
+      // TODO: Remove once full error handling suite is in place
+      console.log(data);
+      try {
+        const authData = mutation.mutate({
+          email: data.email,
+          password: data.password,
+        });
+      } catch (error) {
+        console.log("oopsie", error);
+      }
+    };
 
   return (
     <div>
       Settings
 
       <Box maxWidth="360px" p="2">
-              <Form.Root onSubmit={handleSubmit(loginHandler)}>
-                <Form.Field name="language">
-                  <Form.Label>Language:</Form.Label>
-                  <Form.Control {...register("language")} type="text" required />
-                  {errors.language && <div>{errors.language.message}</div>}
-                </Form.Field>
-                <Form.Field name="password">
-                  <Form.Label>Dark Mode:</Form.Label>
-                  <Form.Control {...register("darkMode")} type="text" required />
-                  {errors.darkMode && <div>{errors.darkMode.message}</div>}
-                </Form.Field>
-      
-                <Form.Submit>{isSubmitting ? "Signing in" : "Sign in"}</Form.Submit>
-              </Form.Root>
-            </Box>
-      <table>
-        <tbody>
-          <tr>
-            <td>Language</td>
-            <td><input /></td>
-          </tr>
-          <tr>
-            <td>Dark Mode</td>
-            <td><input /></td>
-          </tr>
-        </tbody>
-      </table>
+        <Form.Root onSubmit={handleSubmit(submitHandler)}>
+          <Form.Field name="language">
+            <Form.Label>Language:</Form.Label>
+            <Form.Control {...register("language")} type="text" required />
+            {errors.language && <div>{errors.language.message}</div>}
+          </Form.Field>
+          <Form.Field name="password">
+            <Form.Label>Dark Mode:</Form.Label>
+            <Form.Control {...register("darkMode")} type="text" required />
+            {errors.darkMode && <div>{errors.darkMode.message}</div>}
+          </Form.Field>
 
+          <Form.Submit>{isSubmitting ? "Saving" : "Save"}</Form.Submit>
+        </Form.Root>
+      </Box>
     </div>
   )
 
