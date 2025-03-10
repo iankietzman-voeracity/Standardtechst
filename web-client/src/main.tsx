@@ -50,7 +50,16 @@ function App() {
   );
 }
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60000,
+      refetchInterval: 60000,
+      refetchOnMount: false,
+      refetchOnWindowFocus: false
+    },
+  },
+});
 
 // Render the app
 const rootElement = document.getElementById("root")!;
