@@ -66,7 +66,7 @@ function Settings() {
       }     
     }
     fetchData()
-  }, [])
+  }, []);
 
   const mutation = useMutation({
     mutationFn: async (formData: SettingsData) => {
