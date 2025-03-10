@@ -1,8 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as Form from "@radix-ui/react-form";
 import { Box } from "@radix-ui/themes";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { z } from "zod";
 
@@ -11,15 +12,13 @@ import pb from "../lib/pb";
 
 const schema = z.object({
   language: z.string(),
-  darkMode: z.boolean(),
+  darkMode: z.string(),
 });
 
 type SettingsData = z.infer<typeof schema>;
 
 export const Route = createFileRoute("/settings")({
   beforeLoad: ({ context, location }) => {
-    console.log(context);
-
     if (!context.isLoading && !context.isAuthenticated) {
       throw redirect({
         to: "/login",
@@ -33,6 +32,7 @@ export const Route = createFileRoute("/settings")({
 });
 
 function Settings() {
+  const [recordId, setRecordId] = useState<string>("");
   const {
     isAuthenticated,
     setIsAuthenticated,
@@ -45,23 +45,60 @@ function Settings() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<SettingsData>({
     resolver: zodResolver(schema),
   });
 
-    const submitHandler: SubmitHandler<SettingsData> = async (data) => {
-      // TODO: Remove once full error handling suite is in place
-      console.log(data);
+
+  useEffect(() => {
+    const fetchData = async () => {
       try {
-        const authData = mutation.mutate({
-          email: data.email,
-          password: data.password,
-        });
-      } catch (error) {
-        console.log("oopsie", error);
+        const userId = userRecord?.id ? userRecord.id : ''
+        const record = await pb.collection('user_settings').getFirstListItem(`user_id="${userId}"`)
+        setRecordId(record.id)
+        setValue('language', record.language)
+        setValue('darkMode', record.dark_mode)
       }
-    };
+      catch (err) {
+        console.log("error fetching");
+      }     
+    }
+    fetchData()
+  }, [])
+
+  const mutation = useMutation({
+    mutationFn: async (formData: SettingsData) => {
+      const data = {
+        "language": formData.language,
+        "dark_mode": formData.darkMode
+      };
+      await pb.collection('user_settings').update(recordId, data);
+    },
+    onError: () => {
+      console.log('error'); 
+    },
+    onSuccess: () => {
+      console.log('saved!');
+    },
+  });
+
+  if (mutation.isPending) return "Loading...";
+
+  if (mutation.isError)
+    return "An error has occurred: " + mutation.error.message;
+
+  const submitHandler: SubmitHandler<SettingsData> = async (data) => {
+    try {
+      mutation.mutate({
+        language: data.language,
+        darkMode: data.darkMode,
+      });
+    } catch (error) {
+      console.log("oopsie", error);
+    }
+  };
 
   return (
     <div>
@@ -79,7 +116,6 @@ function Settings() {
             <Form.Control {...register("darkMode")} type="text" required />
             {errors.darkMode && <div>{errors.darkMode.message}</div>}
           </Form.Field>
-
           <Form.Submit>{isSubmitting ? "Saving" : "Save"}</Form.Submit>
         </Form.Root>
       </Box>

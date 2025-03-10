@@ -71,6 +71,7 @@ For now check package.json for details on running web client scripts for linting
 
 ### Back end
 - [ ] Plausible custom event hook/route
+- [ ] User creation cascade
 - [ ] Generic middleware setup
 - [ ] Auth middleware
 - [ ] Memory store for auth (eliminate most frequent DB hits)
