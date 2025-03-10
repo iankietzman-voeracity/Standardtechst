@@ -4,6 +4,7 @@ import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import "@radix-ui/themes/styles.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 
 // Import the generated route tree
@@ -37,6 +38,7 @@ function AuthRouterContextBridge() {
             router={router}
             context={{ isAuthenticated, isLoading }}
           />
+          <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </Theme>
     );
@@ -50,16 +52,7 @@ function App() {
   );
 }
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 60000,
-      refetchInterval: 60000,
-      refetchOnMount: false,
-      refetchOnWindowFocus: false
-    },
-  },
-});
+const queryClient = new QueryClient();
 
 // Render the app
 const rootElement = document.getElementById("root")!;
