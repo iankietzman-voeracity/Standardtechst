@@ -15,6 +15,7 @@ import { Route as SettingsImport } from "./routes/settings";
 import { Route as RegisterImport } from "./routes/register";
 import { Route as ProtectedImport } from "./routes/protected";
 import { Route as LoginImport } from "./routes/login";
+import { Route as AccountImport } from "./routes/account";
 import { Route as IndexImport } from "./routes/index";
 
 // Create/Update Routes
@@ -43,6 +44,12 @@ const LoginRoute = LoginImport.update({
   getParentRoute: () => rootRoute,
 } as any);
 
+const AccountRoute = AccountImport.update({
+  id: "/account",
+  path: "/account",
+  getParentRoute: () => rootRoute,
+} as any);
+
 const IndexRoute = IndexImport.update({
   id: "/",
   path: "/",
@@ -58,6 +65,13 @@ declare module "@tanstack/react-router" {
       path: "/";
       fullPath: "/";
       preLoaderRoute: typeof IndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/account": {
+      id: "/account";
+      path: "/account";
+      fullPath: "/account";
+      preLoaderRoute: typeof AccountImport;
       parentRoute: typeof rootRoute;
     };
     "/login": {
@@ -95,6 +109,7 @@ declare module "@tanstack/react-router" {
 
 export interface FileRoutesByFullPath {
   "/": typeof IndexRoute;
+  "/account": typeof AccountRoute;
   "/login": typeof LoginRoute;
   "/protected": typeof ProtectedRoute;
   "/register": typeof RegisterRoute;
@@ -103,6 +118,7 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   "/": typeof IndexRoute;
+  "/account": typeof AccountRoute;
   "/login": typeof LoginRoute;
   "/protected": typeof ProtectedRoute;
   "/register": typeof RegisterRoute;
@@ -112,6 +128,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute;
   "/": typeof IndexRoute;
+  "/account": typeof AccountRoute;
   "/login": typeof LoginRoute;
   "/protected": typeof ProtectedRoute;
   "/register": typeof RegisterRoute;
@@ -120,15 +137,29 @@ export interface FileRoutesById {
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: "/" | "/login" | "/protected" | "/register" | "/settings";
+  fullPaths:
+    | "/"
+    | "/account"
+    | "/login"
+    | "/protected"
+    | "/register"
+    | "/settings";
   fileRoutesByTo: FileRoutesByTo;
-  to: "/" | "/login" | "/protected" | "/register" | "/settings";
-  id: "__root__" | "/" | "/login" | "/protected" | "/register" | "/settings";
+  to: "/" | "/account" | "/login" | "/protected" | "/register" | "/settings";
+  id:
+    | "__root__"
+    | "/"
+    | "/account"
+    | "/login"
+    | "/protected"
+    | "/register"
+    | "/settings";
   fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute;
+  AccountRoute: typeof AccountRoute;
   LoginRoute: typeof LoginRoute;
   ProtectedRoute: typeof ProtectedRoute;
   RegisterRoute: typeof RegisterRoute;
@@ -137,6 +168,7 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AccountRoute: AccountRoute,
   LoginRoute: LoginRoute,
   ProtectedRoute: ProtectedRoute,
   RegisterRoute: RegisterRoute,
@@ -154,6 +186,7 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/account",
         "/login",
         "/protected",
         "/register",
@@ -162,6 +195,9 @@ export const routeTree = rootRoute
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/account": {
+      "filePath": "account.tsx"
     },
     "/login": {
       "filePath": "login.tsx"

@@ -4,7 +4,7 @@ import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import "@radix-ui/themes/styles.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 
 // Import the generated route tree
@@ -52,7 +52,13 @@ function App() {
   );
 }
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 // Render the app
 const rootElement = document.getElementById("root")!;

@@ -59,9 +59,14 @@ function App() {
           </Link>
         )}
         {isAuthenticated && (
-          <Link to="/settings">
-            <Button>Settings</Button>
-          </Link>
+          <>
+            <Link to="/settings">
+              <Button>Settings</Button>
+            </Link>
+            <Link to="/account">
+              <Button>Account</Button>
+            </Link>
+          </>
         )}
         {isAuthenticated && <Button onClick={logoutHandler}>Sign Out</Button>}
         {!isAuthenticated && (

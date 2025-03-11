@@ -1,6 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as Form from "@radix-ui/react-form";
 import { Box } from "@radix-ui/themes";
+import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
@@ -33,11 +34,14 @@ function Login() {
   const navigate = useNavigate({
     from: "/login",
   });
-  if (isAuthenticated) {
-    navigate({
-      to: "/protected",
-    });
-  }
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate({
+        to: "/account",
+      });
+    }
+  }, [isAuthenticated]);
 
   const {
     register,
