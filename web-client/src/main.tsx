@@ -1,8 +1,10 @@
 import { AuthProvider, useAuth } from "./lib/AuthContext";
+import "./lib/i18n"
 import { Theme } from "@radix-ui/themes";
+import "@radix-ui/themes/styles.css";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-import "@radix-ui/themes/styles.css";
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
