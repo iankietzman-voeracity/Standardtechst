@@ -25,7 +25,7 @@ const AuthContext = createContext<AuthContextType | null>(null);
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [userRecord, setUserRecord] = useState<RecordModel | null>();
+  const [userRecord, setUserRecord] = useState<RecordModel | null>(null);
   const [userSettings, setUserSettings] = useState<RecordModel | null>();
   const [token, setToken] = useState<string>("");
 
