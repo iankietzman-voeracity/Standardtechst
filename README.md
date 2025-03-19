@@ -90,8 +90,9 @@ For now check package.json for details on running web client scripts for linting
 - [ ] i18n
 - [ ] Subscriptions/notifications provider
 - [ ] Toast hook
-- [ ] User Settings feature
-- [ ] User Account feature
+- [x] User Settings feature
+- [x] User Account feature
+- [ ] Dark/Light Mode
 - [ ] Some sensible styling
 - [ ] Sentry integration
 - [ ] Dockerfile

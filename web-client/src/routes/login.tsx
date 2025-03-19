@@ -73,7 +73,6 @@ function Login() {
 
   const loginHandler: SubmitHandler<LoginData> = async (data) => {
     // TODO: Remove once full error handling suite is in place
-    console.log(data);
     try {
       const authData = mutation.mutate({
         email: data.email,

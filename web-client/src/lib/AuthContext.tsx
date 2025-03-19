@@ -30,8 +30,6 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [token, setToken] = useState<string>("");
 
   useEffect(() => {
-    console.log("pb store change");
-
     if (pb.authStore.isValid && pb.authStore.record) {
       setIsAuthenticated(true);
       let record = pb.authStore.record
@@ -43,7 +41,6 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       //       .collection("user_settings")
       //       .getFirstListItem(`user_id="${userId}"`);
       //     setUserSettings(record);
-      //     console.log('111', record);
           
       //     // setValue("darkMode", record.dark_mode);
       //     return record;
@@ -53,11 +50,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setUserRecord(record);
       setToken(pb.authStore.token);
       setIsLoading(false);
-      console.log("setting auth");
     } else {
       setIsLoading(false);
-      console.log(isLoading);
-      console.log("setting no auth");
       console.log(
         "user:",
         isAuthenticated,
@@ -68,22 +62,12 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         logout,
       );
     }
-    console.log(isLoading);
   }, []);
 
   const login = () => {
     setIsAuthenticated(true);
     setUserRecord(pb.authStore.record);
     setToken(pb.authStore.token);
-    console.log(
-      "user:",
-      isAuthenticated,
-      isLoading,
-      userRecord,
-      token,
-      login,
-      logout,
-    );
   };
 
   const logout = () => {

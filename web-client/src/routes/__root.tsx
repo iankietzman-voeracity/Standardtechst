@@ -32,15 +32,15 @@ function App() {
     //   setIsAuthenticated(true);
     // }
     // TODO: Remove this line once auth flow is confidently finalized
-    console.log(
-      "user:",
-      isAuthenticated,
-      isLoading,
-      userRecord,
-      token,
-      login,
-      logout,
-    );
+    // console.log(
+    //   "user:",
+    //   isAuthenticated,
+    //   isLoading,
+    //   userRecord,
+    //   token,
+    //   login,
+    //   logout,
+    // );
   }, [isAuthenticated]);
 
   function logoutHandler(): void {
