@@ -1,5 +1,6 @@
 import { RecordModel } from "pocketbase";
 import { createContext, useContext, useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 import pb from "../lib/pb";
 
@@ -24,15 +25,32 @@ const AuthContext = createContext<AuthContextType | null>(null);
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [userRecord, setUserRecord] = useState<RecordModel | null>(null);
+  const [userRecord, setUserRecord] = useState<RecordModel | null>();
+  const [userSettings, setUserSettings] = useState<RecordModel | null>();
   const [token, setToken] = useState<string>("");
 
   useEffect(() => {
     console.log("pb store change");
 
-    if (pb.authStore.isValid) {
+    if (pb.authStore.isValid && pb.authStore.record) {
       setIsAuthenticated(true);
-      setUserRecord(pb.authStore.record);
+      let record = pb.authStore.record
+      // const { isPending, error, data, isFetching } = useQuery({
+      //   queryKey: ["userSettings"],
+      //   queryFn: async () => {
+      //     const userId = userRecord?.id ? userRecord.id : "";
+      //     const record = await pb
+      //       .collection("user_settings")
+      //       .getFirstListItem(`user_id="${userId}"`);
+      //     setUserSettings(record);
+      //     console.log('111', record);
+          
+      //     // setValue("darkMode", record.dark_mode);
+      //     return record;
+      //   },
+      // });
+      
+      setUserRecord(record);
       setToken(pb.authStore.token);
       setIsLoading(false);
       console.log("setting auth");
