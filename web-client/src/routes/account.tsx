@@ -49,10 +49,7 @@ function Account() {
   } = useAuth();
   const { t } = useTranslation("common");
 
-  console.log('t', t);
-  
-
-  console.log(isAuthenticated, userRecord, token);
+  // i18n.changeLanguage('es')
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -83,7 +80,6 @@ function Account() {
     queryFn: async () => {
       const userId = userRecord?.id ? userRecord.id : "";
       const record = await pb.collection("users").getOne(userId);
-      console.log("record", record);
       setRecordId(record.id);
       setValue("email", record.email);
       setValue("name", record.name);
@@ -102,8 +98,6 @@ function Account() {
         // "passwordConfirm": formData.passwordConfirm
       };
 
-      console.log(formData);
-
       await pb.collection("users").update(recordId, data);
 
       if (
@@ -112,7 +106,6 @@ function Account() {
         formData.passwordConfirm &&
         formData.password === formData.passwordConfirm
       ) {
-        console.log("doing password", formData);
 
         let passwordData = {
           oldPassword: formData.oldPassword,

@@ -33,19 +33,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     if (pb.authStore.isValid && pb.authStore.record) {
       setIsAuthenticated(true);
       let record = pb.authStore.record
-      // const { isPending, error, data, isFetching } = useQuery({
-      //   queryKey: ["userSettings"],
-      //   queryFn: async () => {
-      //     const userId = userRecord?.id ? userRecord.id : "";
-      //     const record = await pb
-      //       .collection("user_settings")
-      //       .getFirstListItem(`user_id="${userId}"`);
-      //     setUserSettings(record);
-          
-      //     // setValue("darkMode", record.dark_mode);
-      //     return record;
-      //   },
-      // });
+      
       
       setUserRecord(record);
       setToken(pb.authStore.token);
@@ -103,4 +91,20 @@ const useAuth = () => {
   return context;
 };
 
-export { AuthProvider, useAuth };
+const useSettings = (id: string | null) => {
+  if (!id) return undefined
+  if (id) {
+    const { isPending, error, data, isFetching } = useQuery({
+      queryKey: ["userSettings"],
+      queryFn: async () => {
+        const record = await pb
+          .collection("user_settings")
+          .getFirstListItem(`user_id="${id}"`);      
+        return record;
+      },
+    });
+    return data
+  }
+}
+
+export { AuthProvider, useAuth, useSettings };

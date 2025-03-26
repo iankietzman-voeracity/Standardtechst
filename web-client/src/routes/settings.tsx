@@ -3,6 +3,7 @@ import * as Form from "@radix-ui/react-form";
 import { Box } from "@radix-ui/themes";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { z } from "zod";
@@ -51,6 +52,8 @@ function Settings() {
     resolver: zodResolver(schema),
   });
 
+  const { i18n, t } = useTranslation("common");
+
   const { isPending, error, data, isFetching } = useQuery({
     queryKey: ["userSettings"],
     queryFn: async () => {
@@ -72,11 +75,13 @@ function Settings() {
         dark_mode: formData.darkMode,
       };
       await pb.collection("user_settings").update(recordId, data);
+      return data
     },
     onError: () => {
       console.log("error");
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
+      i18n.changeLanguage(data.language)
       console.log("saved!");
     },
   });
@@ -99,7 +104,7 @@ function Settings() {
 
   return (
     <div>
-      Settings
+      Settings {t("test")}
       <Box maxWidth="360px" p="2">
         <Form.Root onSubmit={handleSubmit(submitHandler)}>
           <Form.Field name="language">

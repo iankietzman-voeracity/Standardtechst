@@ -1,5 +1,7 @@
+import { RecordModel } from "pocketbase";
 import { Button } from "@radix-ui/themes";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import {
   createRootRouteWithContext,
   Link,
@@ -7,7 +9,7 @@ import {
   useNavigate,
 } from "@tanstack/react-router";
 
-import { useAuth } from "../lib/AuthContext";
+import { useAuth, useSettings } from "../lib/AuthContext";
 import pb from "../lib/pb";
 
 interface RouterAuthContext {
@@ -26,10 +28,29 @@ function App() {
     login,
     logout,
   } = useAuth();
+  // console.log('auth', userRecord);
+  let record: RecordModel | undefined = undefined
+  if (userRecord) {
+    record = useSettings(userRecord.id);
+  } 
+  // console.log('dis record', record);
+  const { i18n } = useTranslation();
+  
+
+  useEffect(() => {
+    console.log('record in effect', record);
+    if (record) {
+      i18n.changeLanguage(record.language)
+    }
+    
+  }, [record])
+  
+  
 
   useEffect(() => {
     // if (pb.authStore.isValid) {
-    //   setIsAuthenticated(true);
+    //   const record = useSettings();
+    //   console.log('record', record);
     // }
     // TODO: Remove this line once auth flow is confidently finalized
     // console.log(
