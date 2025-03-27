@@ -28,12 +28,10 @@ function App() {
     login,
     logout,
   } = useAuth();
-  // console.log('auth', userRecord);
   let record: RecordModel | undefined = undefined
   if (userRecord) {
     record = useSettings(userRecord.id);
   } 
-  // console.log('dis record', record);
   const { i18n } = useTranslation();
   
 

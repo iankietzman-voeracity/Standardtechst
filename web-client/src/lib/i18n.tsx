@@ -17,4 +17,9 @@ i18n
     }
   });
 
+export const languages = [
+  {languageCode: 'en', language: 'English'},
+  {languageCode: 'es', language: 'Español'},
+]
+
 export default i18n

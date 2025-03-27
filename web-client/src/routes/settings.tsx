@@ -8,6 +8,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { z } from "zod";
 
+import { languages } from "../lib/i18n"
 import { useAuth } from "../lib/AuthContext";
 import pb from "../lib/pb";
 
@@ -33,6 +34,8 @@ export const Route = createFileRoute("/settings")({
 });
 
 function Settings() {
+  console.log('languages', languages);
+  
   const [recordId, setRecordId] = useState<string>("");
   const {
     isAuthenticated,
@@ -109,12 +112,23 @@ function Settings() {
         <Form.Root onSubmit={handleSubmit(submitHandler)}>
           <Form.Field name="language">
             <Form.Label>Language:</Form.Label>
-            <Form.Control {...register("language")} type="text" required />
+            <Form.Control {...register("language")} asChild required>
+            <select>
+              { languages.map((language) => (
+                <option value={language.languageCode}>{language.language}</option>
+              ))}
+            </select>
+            </Form.Control>
             {errors.language && <div>{errors.language.message}</div>}
           </Form.Field>
           <Form.Field name="password">
             <Form.Label>Dark Mode:</Form.Label>
-            <Form.Control {...register("darkMode")} type="text" required />
+            <Form.Control {...register("darkMode")} asChild required>
+              <select>
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
+              </select>
+            </Form.Control>
             {errors.darkMode && <div>{errors.darkMode.message}</div>}
           </Form.Field>
           <Form.Submit>{isSubmitting ? "Saving" : "Save"}</Form.Submit>
