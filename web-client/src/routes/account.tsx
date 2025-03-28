@@ -106,7 +106,6 @@ function Account() {
         formData.passwordConfirm &&
         formData.password === formData.passwordConfirm
       ) {
-
         let passwordData = {
           oldPassword: formData.oldPassword,
           password: formData.password,

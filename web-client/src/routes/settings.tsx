@@ -8,7 +8,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { z } from "zod";
 
-import { languages } from "../lib/i18n"
+import { languages } from "../lib/i18n";
 import { useAuth } from "../lib/AuthContext";
 import pb from "../lib/pb";
 
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/settings")({
   component: Settings,
 });
 
-function Settings() {  
+function Settings() {
   const [recordId, setRecordId] = useState<string>("");
   const {
     isAuthenticated,
@@ -52,9 +52,8 @@ function Settings() {
   } = useForm<SettingsData>({
     resolver: zodResolver(schema),
   });
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
   const { i18n, t } = useTranslation("common");
-
 
   // TODO: Convert to useSettings hook
   const { isPending, error, data, isFetching } = useQuery({
@@ -78,14 +77,14 @@ function Settings() {
         dark_mode: formData.darkMode,
       };
       await pb.collection("user_settings").update(recordId, data);
-      return data
+      return data;
     },
     onError: () => {
       console.log("error");
     },
     onSuccess: (data) => {
-      i18n.changeLanguage(data.language)
-      queryClient.invalidateQueries({ queryKey: ['userSettings'] })
+      i18n.changeLanguage(data.language);
+      queryClient.invalidateQueries({ queryKey: ["userSettings"] });
       console.log("saved!");
     },
   });
@@ -114,11 +113,16 @@ function Settings() {
           <Form.Field name="language">
             <Form.Label>{t("Language")}:</Form.Label>
             <Form.Control {...register("language")} asChild required>
-            <select>
-              { languages.map((language) => (
-                <option key={language.languageCode} value={language.languageCode}>{language.language}</option>
-              ))}
-            </select>
+              <select>
+                {languages.map((language) => (
+                  <option
+                    key={language.languageCode}
+                    value={language.languageCode}
+                  >
+                    {language.language}
+                  </option>
+                ))}
+              </select>
             </Form.Control>
             {errors.language && <div>{errors.language.message}</div>}
           </Form.Field>
@@ -132,7 +136,7 @@ function Settings() {
             </Form.Control>
             {errors.darkMode && <div>{errors.darkMode.message}</div>}
           </Form.Field>
-          <Form.Submit>{isSubmitting ? t("Saving") : t("Save") }</Form.Submit>
+          <Form.Submit>{isSubmitting ? t("Saving") : t("Save")}</Form.Submit>
         </Form.Root>
       </Box>
     </div>

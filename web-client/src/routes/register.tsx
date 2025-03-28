@@ -98,7 +98,9 @@ function Register() {
             {errors.password && <div>{errors.password.message}</div>}
           </Form.Field>
 
-          <Form.Submit>{isSubmitting ? t("Registering") : t("Register")}</Form.Submit>
+          <Form.Submit>
+            {isSubmitting ? t("Registering") : t("Register")}
+          </Form.Submit>
         </Form.Root>
       </Box>
     </>

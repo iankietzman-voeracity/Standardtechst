@@ -1,5 +1,5 @@
 import i18n from "i18next";
-import HttpApi, { HttpBackendOptions }  from 'i18next-http-backend';
+import HttpApi, { HttpBackendOptions } from "i18next-http-backend";
 import { initReactI18next } from "react-i18next";
 
 i18n
@@ -7,20 +7,20 @@ i18n
   .use(initReactI18next)
   .init<HttpBackendOptions>({
     backend: {
-      loadPath: "/locales/{{lng}}/{{ns}}.json"
+      loadPath: "/locales/{{lng}}/{{ns}}.json",
     },
     ns: ["common"],
     // lng: "en", // if you're using a language detector, do not define the lng option
     fallbackLng: "en",
     debug: true,
     interpolation: {
-      escapeValue: false
-    }
+      escapeValue: false,
+    },
   });
 
 export const languages = [
-  {languageCode: 'en', language: 'English'},
-  {languageCode: 'es', language: 'Español'},
-]
+  { languageCode: "en", language: "English" },
+  { languageCode: "es", language: "Español" },
+];
 
-export default i18n
+export default i18n;

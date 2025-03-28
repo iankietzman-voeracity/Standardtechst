@@ -102,7 +102,9 @@ function Login() {
             {errors.password && <div>{errors.password.message}</div>}
           </Form.Field>
 
-          <Form.Submit>{isSubmitting ? t("Signing in") : t("Sign in")}</Form.Submit>
+          <Form.Submit>
+            {isSubmitting ? t("Signing in") : t("Sign in")}
+          </Form.Submit>
         </Form.Root>
       </Box>
     </>

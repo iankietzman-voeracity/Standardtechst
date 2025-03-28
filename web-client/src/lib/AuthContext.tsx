@@ -32,9 +32,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => {
     if (pb.authStore.isValid && pb.authStore.record) {
       setIsAuthenticated(true);
-      let record = pb.authStore.record
-      
-      
+      let record = pb.authStore.record;
+
       setUserRecord(record);
       setToken(pb.authStore.token);
       setIsLoading(false);
@@ -92,20 +91,20 @@ const useAuth = () => {
 };
 
 const useSettings = (id: string | null) => {
-  if (!id) return null
+  if (!id) return null;
   if (id) {
     const { isPending, error, data, isFetching } = useQuery({
       queryKey: ["userSettings"],
       queryFn: async () => {
         const record = await pb
           .collection("user_settings")
-          .getFirstListItem(`user_id="${id}"`); 
-        if (!record) return null              
+          .getFirstListItem(`user_id="${id}"`);
+        if (!record) return null;
         return record;
       },
     });
-    return data
+    return data;
   }
-}
+};
 
 export { AuthProvider, useAuth, useSettings };

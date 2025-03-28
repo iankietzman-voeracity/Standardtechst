@@ -3,7 +3,6 @@ import { Button, Theme } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-
 import {
   createRootRouteWithContext,
   Link,
@@ -20,8 +19,8 @@ interface RouterAuthContext {
 }
 
 function App() {
-  const [record, setRecord] = useState<RecordModel | null>(null); 
-  const [two, setTwo] = useState<string>('null'); 
+  const [record, setRecord] = useState<RecordModel | null>(null);
+  const [two, setTwo] = useState<string>("null");
   const navigate = useNavigate();
   const {
     isAuthenticated,
@@ -32,23 +31,23 @@ function App() {
     login,
     logout,
   } = useAuth();
-  let recordData: RecordModel | null = null
+  let recordData: RecordModel | null = null;
   if (userRecord?.id) {
-    const data = useSettings(userRecord.id)
-    recordData = data ? data : null
+    const data = useSettings(userRecord.id);
+    recordData = data ? data : null;
   }
-  
-  const { i18n, t } = useTranslation("common");  
+
+  const { i18n, t } = useTranslation("common");
 
   useEffect(() => {
     if (record) {
-      i18n.changeLanguage(record.language)
+      i18n.changeLanguage(record.language);
     }
-  }, [record])
+  }, [record]);
 
   useEffect(() => {
     setRecord(recordData ? recordData : null);
-  }, [recordData])
+  }, [recordData]);
 
   function logoutHandler(): void {
     logout();
@@ -75,7 +74,9 @@ function App() {
             </Link>
           </>
         )}
-        {isAuthenticated && <Button onClick={logoutHandler}>{t("Sign Out")}</Button>}
+        {isAuthenticated && (
+          <Button onClick={logoutHandler}>{t("Sign Out")}</Button>
+        )}
         {!isAuthenticated && (
           <Link to="/register">
             <Button>{t("Register")}</Button>
