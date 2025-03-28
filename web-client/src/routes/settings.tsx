@@ -108,11 +108,11 @@ function Settings() {
 
   return (
     <div>
-      Settings {t("test")}
+      {t("Settings")}
       <Box maxWidth="360px" p="2">
         <Form.Root onSubmit={handleSubmit(submitHandler)}>
           <Form.Field name="language">
-            <Form.Label>Language:</Form.Label>
+            <Form.Label>{t("Language")}:</Form.Label>
             <Form.Control {...register("language")} asChild required>
             <select>
               { languages.map((language) => (
@@ -122,17 +122,17 @@ function Settings() {
             </Form.Control>
             {errors.language && <div>{errors.language.message}</div>}
           </Form.Field>
-          <Form.Field name="password">
-            <Form.Label>Dark Mode:</Form.Label>
+          <Form.Field name="dark_mode">
+            <Form.Label>{t("Dark Mode")}:</Form.Label>
             <Form.Control {...register("darkMode")} asChild required>
               <select>
-                <option value="dark">Dark</option>
-                <option value="light">Light</option>
+                <option value="dark">{t("Dark")}</option>
+                <option value="light">{t("Light")}</option>
               </select>
             </Form.Control>
             {errors.darkMode && <div>{errors.darkMode.message}</div>}
           </Form.Field>
-          <Form.Submit>{isSubmitting ? "Saving" : "Save"}</Form.Submit>
+          <Form.Submit>{isSubmitting ? t("Saving") : t("Save") }</Form.Submit>
         </Form.Root>
       </Box>
     </div>

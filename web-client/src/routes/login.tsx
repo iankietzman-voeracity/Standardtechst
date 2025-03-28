@@ -3,12 +3,14 @@ import * as Form from "@radix-ui/react-form";
 import { Box } from "@radix-ui/themes";
 import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { useMutation } from "@tanstack/react-query";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { z } from "zod";
 
 import { useAuth } from "../lib/AuthContext";
 import pb from "../lib/pb";
+import { t } from "i18next";
 
 const schema = z.object({
   email: z.string().email(),
@@ -22,6 +24,7 @@ export const Route = createFileRoute("/login")({
 });
 
 function Login() {
+  const { t } = useTranslation("common");
   const {
     isAuthenticated,
     setIsAuthenticated,
@@ -85,20 +88,21 @@ function Login() {
 
   return (
     <>
+      {t("Sign In")}
       <Box maxWidth="360px" p="2">
         <Form.Root onSubmit={handleSubmit(loginHandler)}>
           <Form.Field name="email">
-            <Form.Label>Email:</Form.Label>
+            <Form.Label>{t("Email")}:</Form.Label>
             <Form.Control {...register("email")} type="email" required />
             {errors.email && <div>{errors.email.message}</div>}
           </Form.Field>
           <Form.Field name="password">
-            <Form.Label>Password:</Form.Label>
+            <Form.Label>{t("Password")}:</Form.Label>
             <Form.Control {...register("password")} type="password" required />
             {errors.password && <div>{errors.password.message}</div>}
           </Form.Field>
 
-          <Form.Submit>{isSubmitting ? "Signing in" : "Sign in"}</Form.Submit>
+          <Form.Submit>{isSubmitting ? t("Signing in") : t("Sign in")}</Form.Submit>
         </Form.Root>
       </Box>
     </>

@@ -2,6 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Box } from "@radix-ui/themes";
 import * as Form from "@radix-ui/react-form";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { useMutation } from "@tanstack/react-query";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { z } from "zod";
@@ -23,6 +24,7 @@ export const Route = createFileRoute("/register")({
 
 function Register() {
   const { isAuthenticated, login } = useAuth();
+  const { t } = useTranslation("common");
 
   const navigate = useNavigate({
     from: "/register",
@@ -72,21 +74,22 @@ function Register() {
 
   return (
     <>
+      {t("Register")}
       <Box maxWidth="360px" p="2">
         <Form.Root onSubmit={handleSubmit(loginHandler)}>
           <Form.Field name="email">
-            <Form.Label>Email:</Form.Label>
+            <Form.Label>{t("Register")}:</Form.Label>
             <Form.Control {...register("email")} type="email" required />
             {errors.email && <div>{errors.email.message}</div>}
           </Form.Field>
           <Form.Field name="password">
-            <Form.Label>Password:</Form.Label>
+            <Form.Label>{t("Password")}:</Form.Label>
             <Form.Control {...register("password")} type="password" required />
             {errors.password && <div>{errors.password.message}</div>}
           </Form.Field>
 
           <Form.Field name="password-confirm">
-            <Form.Label>Password:</Form.Label>
+            <Form.Label>{t("Confirm Password")}:</Form.Label>
             <Form.Control
               {...register("passwordConfirm")}
               type="password"
@@ -95,7 +98,7 @@ function Register() {
             {errors.password && <div>{errors.password.message}</div>}
           </Form.Field>
 
-          <Form.Submit>{isSubmitting ? "Registering" : "Register"}</Form.Submit>
+          <Form.Submit>{isSubmitting ? t("Registering") : t("Register")}</Form.Submit>
         </Form.Root>
       </Box>
     </>

@@ -151,11 +151,11 @@ function Account() {
 
   return (
     <div>
-      Account {t("Welcome to React")} {t("test")}
+      {t("Account")}
       <Box maxWidth="360px" p="2">
         <Form.Root onSubmit={handleSubmit(submitHandler)}>
           <Form.Field name="email">
-            <Form.Label>Email:</Form.Label>
+            <Form.Label>{t("Email")}:</Form.Label>
             <Form.Control
               {...register("email")}
               type="text"
@@ -165,33 +165,33 @@ function Account() {
             {errors.email && <div>{errors.email.message}</div>}
           </Form.Field>
           <Form.Field name="name">
-            <Form.Label>Name:</Form.Label>
+            <Form.Label>{t("Name")}:</Form.Label>
             <Form.Control {...register("name")} type="text" required />
             {errors.name && <div>{errors.name.message}</div>}
           </Form.Field>
           <Form.Field name="phone">
-            <Form.Label>Phone:</Form.Label>
+            <Form.Label>{t("Phone")}:</Form.Label>
             <Form.Control {...register("phone")} type="text" required />
             {errors.phone && <div>{errors.phone.message}</div>}
           </Form.Field>
           <Form.Field name="oldPassword">
-            <Form.Label>Current Password:</Form.Label>
+            <Form.Label>{t("Current Password")}:</Form.Label>
             <Form.Control {...register("oldPassword")} type="password" />
             {errors.oldPassword && <div>{errors.oldPassword.message}</div>}
           </Form.Field>
           <Form.Field name="password">
-            <Form.Label>New Password:</Form.Label>
+            <Form.Label>{t("New Password")}:</Form.Label>
             <Form.Control {...register("password")} type="password" />
             {errors.password && <div>{errors.password.message}</div>}
           </Form.Field>
           <Form.Field name="passwordConfirm">
-            <Form.Label>Confirm Password:</Form.Label>
+            <Form.Label>{t("Confirm Password")}:</Form.Label>
             <Form.Control {...register("passwordConfirm")} type="password" />
             {errors.passwordConfirm && (
               <div>{errors.passwordConfirm.message}</div>
             )}
           </Form.Field>
-          <Form.Submit>{isSubmitting ? "Saving" : "Save"}</Form.Submit>
+          <Form.Submit>{isSubmitting ? t("Saving") : t("Save")}</Form.Submit>
         </Form.Root>
       </Box>
     </div>

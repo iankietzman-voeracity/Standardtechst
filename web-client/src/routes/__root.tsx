@@ -38,7 +38,7 @@ function App() {
     recordData = data ? data : null
   }
   
-  const { i18n } = useTranslation();  
+  const { i18n, t } = useTranslation("common");  
 
   useEffect(() => {
     if (record) {
@@ -62,23 +62,23 @@ function App() {
       <div>
         {!isAuthenticated && (
           <Link to="/login">
-            <Button>Sign In</Button>
+            <Button>{t("Sign In")}</Button>
           </Link>
         )}
         {isAuthenticated && (
           <>
             <Link to="/settings">
-              <Button>Settings</Button>
+              <Button>{t("Settings")}</Button>
             </Link>
             <Link to="/account">
-              <Button>Account</Button>
+              <Button>{t("Account")}</Button>
             </Link>
           </>
         )}
-        {isAuthenticated && <Button onClick={logoutHandler}>Sign Out</Button>}
+        {isAuthenticated && <Button onClick={logoutHandler}>{t("Sign Out")}</Button>}
         {!isAuthenticated && (
           <Link to="/register">
-            <Button>Register</Button>
+            <Button>{t("Register")}</Button>
           </Link>
         )}
       </div>

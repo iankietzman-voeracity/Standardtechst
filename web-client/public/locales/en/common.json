@@ -1,4 +1,22 @@
 {
-    "Welcome to React" : "Testing",
-    "test" : "number twos"
+    "Account" : "Account",
+    "Confirm Password" : "Confirm Password",
+    "Current Password" : "Current Password",
+    "Dark" : "Dark",
+    "Dark Mode": "Dark Mode",
+    "Email" : "Email",
+    "Language" : "Language",
+    "Light": "",
+    "Name" : "Name",
+    "New Password" : "New Password",
+    "Password" : "Password",
+    "Phone" : "Phone",
+    "Register" : "Register",
+    "Registering": "Registering",
+    "Save" : "Save",
+    "Saving" : "Saving",
+    "Settings" : "Settings",
+    "Sign In" : "Sign In",
+    "Signing In" : "Signing In",
+    "Sign Out" : "Sign Out"
 }
