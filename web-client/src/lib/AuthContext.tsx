@@ -92,14 +92,15 @@ const useAuth = () => {
 };
 
 const useSettings = (id: string | null) => {
-  if (!id) return undefined
+  if (!id) return null
   if (id) {
     const { isPending, error, data, isFetching } = useQuery({
       queryKey: ["userSettings"],
       queryFn: async () => {
         const record = await pb
           .collection("user_settings")
-          .getFirstListItem(`user_id="${id}"`);      
+          .getFirstListItem(`user_id="${id}"`); 
+        if (!record) return null              
         return record;
       },
     });

@@ -1,5 +1,4 @@
-import { AuthProvider, useAuth } from "./lib/AuthContext";
-import "./lib/i18n"
+import { RecordModel } from "pocketbase";
 import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import { StrictMode } from "react";
@@ -11,6 +10,8 @@ import { RouterProvider, createRouter } from "@tanstack/react-router";
 
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
+import {  AuthProvider, useAuth } from "./lib/AuthContext";
+import "./lib/i18n"
 
 // Create a new router instance
 const router = createRouter({
@@ -30,11 +31,11 @@ declare module "@tanstack/react-router" {
 }
 
 function AuthRouterContextBridge() {
-  const { isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isLoading, userRecord } = useAuth();
 
-  if (!isLoading)
+  if (!isLoading) {  
     return (
-      <Theme appearance="dark" accentColor="tomato">
+      // <Theme appearance={record?.dark_mode} accentColor="tomato">
         <QueryClientProvider client={queryClient}>
           <RouterProvider
             router={router}
@@ -42,8 +43,9 @@ function AuthRouterContextBridge() {
           />
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
-      </Theme>
+      // </Theme>
     );
+  }
 }
 
 function App() {

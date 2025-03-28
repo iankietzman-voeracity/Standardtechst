@@ -4,7 +4,7 @@ import { Box } from "@radix-ui/themes";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { z } from "zod";
 
@@ -33,9 +33,7 @@ export const Route = createFileRoute("/settings")({
   component: Settings,
 });
 
-function Settings() {
-  console.log('languages', languages);
-  
+function Settings() {  
   const [recordId, setRecordId] = useState<string>("");
   const {
     isAuthenticated,
@@ -54,9 +52,11 @@ function Settings() {
   } = useForm<SettingsData>({
     resolver: zodResolver(schema),
   });
-
+  const queryClient = useQueryClient()
   const { i18n, t } = useTranslation("common");
 
+
+  // TODO: Convert to useSettings hook
   const { isPending, error, data, isFetching } = useQuery({
     queryKey: ["userSettings"],
     queryFn: async () => {
@@ -85,6 +85,7 @@ function Settings() {
     },
     onSuccess: (data) => {
       i18n.changeLanguage(data.language)
+      queryClient.invalidateQueries({ queryKey: ['userSettings'] })
       console.log("saved!");
     },
   });

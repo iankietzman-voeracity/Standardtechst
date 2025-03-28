@@ -1,7 +1,9 @@
 import { RecordModel } from "pocketbase";
-import { Button } from "@radix-ui/themes";
-import { useEffect } from "react";
+import { Button, Theme } from "@radix-ui/themes";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+
+
 import {
   createRootRouteWithContext,
   Link,
@@ -18,6 +20,8 @@ interface RouterAuthContext {
 }
 
 function App() {
+  const [record, setRecord] = useState<RecordModel | null>(null); 
+  const [two, setTwo] = useState<string>('null'); 
   const navigate = useNavigate();
   const {
     isAuthenticated,
@@ -28,39 +32,23 @@ function App() {
     login,
     logout,
   } = useAuth();
-  let record: RecordModel | undefined = undefined
-  if (userRecord) {
-    record = useSettings(userRecord.id);
-  } 
-  const { i18n } = useTranslation();
+  let recordData: RecordModel | null = null
+  if (userRecord?.id) {
+    const data = useSettings(userRecord.id)
+    recordData = data ? data : null
+  }
   
+  const { i18n } = useTranslation();  
 
   useEffect(() => {
-    console.log('record in effect', record);
     if (record) {
       i18n.changeLanguage(record.language)
     }
-    
   }, [record])
-  
-  
 
   useEffect(() => {
-    // if (pb.authStore.isValid) {
-    //   const record = useSettings();
-    //   console.log('record', record);
-    // }
-    // TODO: Remove this line once auth flow is confidently finalized
-    // console.log(
-    //   "user:",
-    //   isAuthenticated,
-    //   isLoading,
-    //   userRecord,
-    //   token,
-    //   login,
-    //   logout,
-    // );
-  }, [isAuthenticated]);
+    setRecord(recordData ? recordData : null);
+  }, [recordData])
 
   function logoutHandler(): void {
     logout();
@@ -70,7 +58,7 @@ function App() {
   }
 
   return (
-    <>
+    <Theme appearance={record?.dark_mode} accentColor="tomato">
       <div>
         {!isAuthenticated && (
           <Link to="/login">
@@ -96,7 +84,7 @@ function App() {
       </div>
       <hr />
       <Outlet />
-    </>
+    </Theme>
   );
 }
 
