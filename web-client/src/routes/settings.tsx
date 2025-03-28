@@ -115,7 +115,7 @@ function Settings() {
             <Form.Control {...register("language")} asChild required>
             <select>
               { languages.map((language) => (
-                <option value={language.languageCode}>{language.language}</option>
+                <option key={language.languageCode} value={language.languageCode}>{language.language}</option>
               ))}
             </select>
             </Form.Control>
