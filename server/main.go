@@ -48,7 +48,7 @@ func main() {
 			record := core.NewRecord(collection)
 
 			record.Set("user_id", e.Record.Get("id"))
-			record.Set("language", "eng")
+			record.Set("language", "en")
 			record.Set("dark_mode", "dark")
 
 			fmt.Print(record)

@@ -71,7 +71,7 @@ For now check package.json for details on running web client scripts for linting
 
 ### Back end
 - [ ] Plausible custom event hook/route
-- [ ] User creation cascade
+- [x] User creation cascade
 - [ ] Generic middleware setup
 - [ ] Auth middleware
 - [ ] Memory store for auth (eliminate most frequent DB hits)
@@ -87,12 +87,12 @@ For now check package.json for details on running web client scripts for linting
 - [ ] API provider
 - [ ] User reset password feature
 - [ ] React Testing Library w/ Vitest
-- [ ] i18n
+- [X] i18n
 - [ ] Subscriptions/notifications provider
 - [ ] Toast hook
-- [x] User Settings feature
-- [x] User Account feature
-- [ ] Dark/Light Mode
+- [x] Feature: User Settings
+- [x] Feature: User Account 
+- [x] Feature: Dark/Light Mode
 - [ ] Some sensible styling
 - [ ] Sentry integration
 - [ ] Dockerfile
