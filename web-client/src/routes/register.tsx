@@ -52,7 +52,7 @@ function Register() {
       login();
       return authData;
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       navigate({
         to: "/protected",
       });

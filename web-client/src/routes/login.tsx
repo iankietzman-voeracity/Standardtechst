@@ -10,7 +10,6 @@ import { z } from "zod";
 
 import { useAuth } from "../lib/AuthContext";
 import pb from "../lib/pb";
-import { t } from "i18next";
 
 const schema = z.object({
   email: z.string().email(),

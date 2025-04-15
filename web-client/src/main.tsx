@@ -1,9 +1,6 @@
-import { RecordModel } from "pocketbase";
-import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
@@ -35,7 +32,6 @@ function AuthRouterContextBridge() {
 
   if (!isLoading) {
     return (
-      // <Theme appearance={record?.dark_mode} accentColor="tomato">
       <QueryClientProvider client={queryClient}>
         <RouterProvider
           router={router}
@@ -43,7 +39,6 @@ function AuthRouterContextBridge() {
         />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
-      // </Theme>
     );
   }
 }

@@ -11,7 +11,6 @@ import {
 } from "@tanstack/react-router";
 
 import { useAuth, useSettings } from "../lib/AuthContext";
-import pb from "../lib/pb";
 
 interface RouterAuthContext {
   isAuthenticated: boolean;
@@ -20,7 +19,6 @@ interface RouterAuthContext {
 
 function App() {
   const [record, setRecord] = useState<RecordModel | null>(null);
-  const [two, setTwo] = useState<string>("null");
   const navigate = useNavigate();
   const {
     isAuthenticated,

@@ -49,8 +49,6 @@ function Account() {
   } = useAuth();
   const { t } = useTranslation("common");
 
-  // i18n.changeLanguage('es')
-
   useEffect(() => {
     if (!isAuthenticated) {
       navigate({
@@ -93,9 +91,6 @@ function Account() {
       let data = {
         name: formData.name,
         phone: formData.phone,
-        // "oldPassword": formData.oldPassword,
-        // "password": formData.password,
-        // "passwordConfirm": formData.passwordConfirm
       };
 
       await pb.collection("users").update(recordId, data);

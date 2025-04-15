@@ -55,7 +55,7 @@ function Settings() {
   const queryClient = useQueryClient();
   const { i18n, t } = useTranslation("common");
 
-  // TODO: Convert to useSettings hook
+  // TODO: Convert to useSettings hook?
   const { isPending, error, data, isFetching } = useQuery({
     queryKey: ["userSettings"],
     queryFn: async () => {
