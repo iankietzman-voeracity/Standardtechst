@@ -66,12 +66,28 @@ For now check package.json for details on running web client scripts for linting
 - [x] README 0.0.1
 - [x] Release
 
-
-## Todo for release candidate 0.0.2:
+## Work completed for initial release candidate 0.0.2:
 
 ### Back end
-- [ ] Plausible custom event hook/route
 - [x] User creation cascade
+
+### Front end
+- [X] i18n
+- [x] Feature: User Settings
+- [x] Feature: User Account 
+- [x] Feature: Dark/Light Mode
+
+### Root
+- [x] Cleanup
+- [x] Roadmap 0.0.3
+- [x] README 0.0.2
+- [x] Release
+
+## Todo for release candidate 0.0.3:
+
+### Back end
+- [ ] Update project structure to reflect cmd/internal/pkg convention
+- [ ] Plausible custom event hook/route
 - [ ] Generic middleware setup
 - [ ] Auth middleware
 - [ ] Memory store for auth (eliminate most frequent DB hits)
@@ -87,12 +103,8 @@ For now check package.json for details on running web client scripts for linting
 - [ ] API provider
 - [ ] User reset password feature
 - [ ] React Testing Library w/ Vitest
-- [X] i18n
 - [ ] Subscriptions/notifications provider
 - [ ] Toast hook
-- [x] Feature: User Settings
-- [x] Feature: User Account 
-- [x] Feature: Dark/Light Mode
 - [ ] Some sensible styling
 - [ ] Sentry integration
 - [ ] Dockerfile
@@ -102,6 +114,6 @@ For now check package.json for details on running web client scripts for linting
 - [ ] PR requirements and template
 - [ ] compose.yaml
 - [ ] Github workflows for E2E testing/build/deploy
-- [ ] Roadmap 0.0.3
+- [ ] Roadmap 0.0.3 - To include feature/dev documentation
 - [ ] README 0.0.2
 - [ ] Release
