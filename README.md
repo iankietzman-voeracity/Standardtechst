@@ -86,12 +86,12 @@ For now check package.json for details on running web client scripts for linting
 ## Todo for release candidate 0.0.3:
 
 ### Back end
-- [ ] Update project structure to reflect cmd/internal/pkg convention
+- [o] Update project structure to reflect cmd/internal/pkg convention
 - [ ] Plausible custom event hook/route
 - [ ] Generic middleware setup
 - [ ] Auth middleware
 - [ ] Memory store for auth (eliminate most frequent DB hits)
-- [ ] Migrations (for user Settings feature)
+- [o] Migrations (for user Settings feature)
 - [ ] Testing setup
 - [ ] Subscriptions provider
 - [ ] Email+templates (See: User reset password feature)
@@ -104,7 +104,7 @@ For now check package.json for details on running web client scripts for linting
 - [ ] User reset password feature
 - [ ] React Testing Library w/ Vitest
 - [ ] Subscriptions/notifications provider
-- [ ] Toast hook
+- [o] Toast hook
 - [ ] Some sensible styling
 - [ ] Sentry integration
 - [ ] Dockerfile
