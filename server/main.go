@@ -32,26 +32,18 @@ func main() {
 		// user registration flow
 
 		app.OnRecordAfterCreateSuccess("users").BindFunc(func(e *core.RecordEvent) error {
-			// e.App
-			// e.Record
-
-			fmt.Print(e.Record.Get("id"))
-			fmt.Print("uuu")
 			collection, err := app.FindCollectionByNameOrId("user_settings")
 
-			fmt.Print("XX")
 			if err != nil {
 				fmt.Print(err)
 				return err
 			}
-			fmt.Print("OO")
+
 			record := core.NewRecord(collection)
 
 			record.Set("user_id", e.Record.Get("id"))
 			record.Set("language", "en")
 			record.Set("dark_mode", "dark")
-
-			fmt.Print(record)
 
 			err = app.Save(record)
 			if err != nil {
@@ -60,6 +52,7 @@ func main() {
 			}
 
 			return e.Next()
+
 		})
 
 		return se.Next()
