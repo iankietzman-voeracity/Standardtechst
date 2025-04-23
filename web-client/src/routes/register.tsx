@@ -78,7 +78,7 @@ function Register() {
       <Box maxWidth="360px" p="2">
         <Form.Root onSubmit={handleSubmit(loginHandler)}>
           <Form.Field name="email">
-            <Form.Label>{t("Register")}:</Form.Label>
+            <Form.Label>{t("Email")}:</Form.Label>
             <Form.Control {...register("email")} type="email" required />
             {errors.email && <div>{errors.email.message}</div>}
           </Form.Field>
